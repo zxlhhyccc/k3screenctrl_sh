@@ -12,6 +12,8 @@ CPU_TEMP=$(($(cat /sys/class/thermal/thermal_zone0/temp) / 1000))
 HW_VERSION=${LEDE_DEVICE_REVISION:0:2}
 FW_VERSION=${BUILD_ID:0:17}
 
+HW_TEMP=$(cat /sys/class/thermal/thermal_zone0/temp)
+HW_TEMP=`echo "scale=1; $HW_TEMPL/1000" | bc`
 echo $PRODUCT_NAME
 
 if [ $(uci get k3screenctrl.@general[0].cputemp) -eq 1 ]; then
